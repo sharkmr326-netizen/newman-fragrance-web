@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="description" content="Discover NEWMAN—The New Masculine Standard. A premium luxury fragrance and soothing aftershave collection engineered with smoked bergamot, rich incense, and black vetiver.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWMAN | The New Masculine Standard</title>
@@ -14,12 +13,14 @@
     <!-- Header Navigation -->
     <header>
         <div class="logo">NEWMAN</div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#scent">The Scent</a>
-            <a href="#shop">Shop</a>
+        <nav id="navMenu">
+            <a href="#home" onclick="closeMobileMenu()">Home</a>
+            <a href="#scent" onclick="closeMobileMenu()">The Scent</a>
+            <a href="#shop" onclick="closeMobileMenu()">Shop</a>
             <a href="#" class="cart-trigger" onclick="toggleCart(event)">Cart (<span id="cart-count">0</span>)</a>
         </nav>
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">&#9776;</button>
     </header>
 
     <!-- Interactive Sidebar Drawer Cart -->
@@ -57,7 +58,6 @@
             </div>
         </div>
     </section>
-
     <!-- 2. The Scent Profile Section -->
     <section id="scent" class="scent-profile">
         <div class="section-title">
@@ -69,7 +69,7 @@
             <div class="note-card">
                 <div class="note-layer">TOP NOTES</div>
                 <h3>Smoked Bergamot</h3>
-                <p>Crisp citrus combined with a flash of black pepper and crushed mint for an instantly sharp, commanding introduction.</p>
+                <p>Crisp citrus combined with a flash of black pepper and crushed mint for an instantly sharp introduction.</p>
             </div>
             <div class="note-card">
                 <div class="note-layer">HEART NOTES</div>
@@ -123,13 +123,21 @@
         <p class="footer-credit">&copy; 2026 NEWMAN FRAGRANCES. UNCOMPROMISING ELEGANCE.</p>
     </footer>
 
-    <!-- Interactive Cart JavaScript Logic -->
+    <!-- Interactive Cart & Navigation JavaScript Logic -->
     <script>
         let cart = [];
         
         function toggleCart(e) {
             if(e) e.preventDefault();
             document.getElementById('cartDrawer').classList.toggle('active');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-active');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('navMenu').classList.remove('mobile-active');
         }
 
         function addToCart(name, price) {
@@ -152,7 +160,7 @@
             let totalPrice = 0;
             
             if(cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="empty-msg">Your ritual bag is empty.</p>';
+                cartItemsContainer.innerHTML = '<p class="empty-msg">Your bag is empty.</p>';
             } else {
                 cartItemsContainer.innerHTML = '';
                 cart.forEach((item, index) => {
@@ -163,7 +171,7 @@
                         <div class="cart-item">
                             <div>
                                 <h4>${item.name}</h4>
-                                <p>$${item.price.toFixed(2)} x ${item.qty}</p>
+                                <p>£${item.price.toFixed(2)} x ${item.qty}</p>
                             </div>
                             <span class="remove-item" onclick="removeItem(${index})">&times;</span>
                         </div>
@@ -172,7 +180,7 @@
             }
             
             cartCountElement.innerText = totalItems;
-            cartTotalElement.innerText = `$${totalPrice.toFixed(2)}`;
+            cartTotalElement.innerText = `£${totalPrice.toFixed(2)}`;
         }
 
         function removeItem(index) {
