@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWMAN | The New Masculine Standard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Luxury Serif & Sans-Serif Typography -->
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">NEWMAN</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#scent">The Scent</a>
+            <a href="#shop">Shop</a>
+            <a href="#" class="cart-trigger" onclick="toggleCart(event)">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <!-- Interactive Sidebar Drawer Cart -->
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>YOUR BAG</h3>
+            <span class="close-cart" onclick="toggleCart(event)">&times;</span>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <p class="empty-msg">Your ritual bag is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="cartTotal">£0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="alert('Proceeding to luxury checkout...')">PROCEED TO CHECKOUT</button>
+        </div>
+    </div>
+
+    <!-- 1. Expanded Height Side-by-Side Flex Hero Layout -->
+    <section id="home" class="hero-split-section">
+        <!-- Left Side: Custom Campaign Photo Panel -->
+        <div class="hero-left-panel">
+            <img src="Images/Screenshot 2026-09-28 234135.png" alt="Newman Campaign" class="split-campaign-photo">
+        </div>
+        
+        <!-- Right Side: The Luxury Text & Accent Container Block -->
+        <div class="hero-right-panel">
+            <div class="hero-content">
+                <p class="tagline">NEWMAN AFTERSHAVE</p>
+                <h1>THE NEW MASCULINE STANDARD.</h1>
+                <p class="subheading">Cleaner skin. Sharper you. Confidence in every single drop.</p>
+                <a href="#shop" class="cta-btn">SHOP THE RITUAL</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Scent Profile Section -->
+    <section id="scent" class="scent-profile">
+        <div class="section-title">
+            <p class="subtitle">THE ARCHITECTURE OF SCENT</p>
+            <h2>THE FRAGRANCE PYRAMID</h2>
+        </div>
+        
+        <div class="pyramid-container">
+            <div class="note-card">
+                <div class="note-layer">TOP NOTES</div>
+                <h3>Smoked Bergamot</h3>
+                <p>Crisp citrus combined with a flash of black pepper and crushed mint for an instantly sharp, commanding introduction.</p>
+            </div>
+            <div class="note-card">
+                <div class="note-layer">HEART NOTES</div>
+                <h3>Rich Incense</h3>
+                <p>A sophisticated evolution into dark French lavender, warm nutmeg, and exotic resinous wood smoked notes.</p>
+            </div>
+            <div class="note-card">
+                <div class="note-layer">BASE NOTES</div>
+                <h3>Black Vetiver</h3>
+                <p>A heavy foundation of velvet musk, raw amberwood, and deep vetiver that anchors to the skin for hours.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Premium Product Grid Section -->
+    <section id="shop" class="shop-section">
+        <div class="section-title">
+            <p class="subtitle">THE COLLECTION</p>
+            <h2>ELEVATE YOUR ROUTINE</h2>
+        </div>
+
+        <div class="product-grid">
+            <!-- Product 1: Aftershave (Left Side) -->
+            <div class="product-card highlighted-product">
+                <div class="product-img-wrapper">
+                    <img src="Images/Screenshot 2026-09-28 234120.png" alt="Newman Aftershave Splash">
+                </div>
+                <div class="product-info">
+                    <h3>Newman Aftershave Splash</h3>
+                    <p class="price">£45.00</p>
+                    <p class="desc">Soothing post-shave formula designed to lock in deep hydration, close pores, and counter razor burn.</p>
+                    <button class="buy-btn" onclick="addToCart('Newman Aftershave Splash', 45.00)">ADD TO BAG</button>
+                </div>
+            </div>
+
+            <!-- Product 2: The Parfum (Right Side) -->
+            <div class="product-card plain-text-card">
+                <div class="product-info">
+                    <h3>Newman Eau de Parfum</h3>
+                    <p class="price">£75.00</p>
+                    <p class="desc">Maximum concentration blend crafted for exceptional, ultra long-lasting sillage projection.</p>
+                    <button class="buy-btn" onclick="addToCart('Newman Eau de Parfum', 75.00)">ADD TO BAG</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Luxury Footer Section -->
+    <footer>
+        <div class="footer-logo">NEWMAN</div>
+        <p class="footer-credit">&copy; 2026 NEWMAN FRAGRANCES. UNCOMPROMISING ELEGANCE.</p>
+    </footer>
+
+    <!-- Interactive Cart JavaScript Logic -->
+    <script>
+        let cart = [];
+        
+        function toggleCart(e) {
+            if(e) e.preventDefault();
+            document.getElementById('cartDrawer').classList.toggle('active');
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            document.getElementById('cartDrawer').classList.add('active');
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCountElement = document.getElementById('cart-count');
+            const cartTotalElement = document.getElementById('cartTotal');
+            
+            let totalItems = 0;
+            let totalPrice = 0;
+            
+            if(cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-msg">Your ritual bag is empty.</p>';
+            } else {
+                cartItemsContainer.innerHTML = '';
+                cart.forEach((item, index) => {
+                    totalItems += item.qty;
+                    totalPrice += (item.price * item.qty);
+                    
+                    cartItemsContainer.innerHTML += `
+                        <div class="cart-item">
+                            <div>
+                                <h4>${item.name}</h4>
+                                <p>$${item.price.toFixed(2)} x ${item.qty}</p>
+                            </div>
+                            <span class="remove-item" onclick="removeItem(${index})">&times;</span>
+                        </div>
+                    `;
+                });
+            }
+            
+            cartCountElement.innerText = totalItems;
+            cartTotalElement.innerText = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+    </script>
+</body>
+</html>
