@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <!-- Header Navigation (Permanently Visible) -->
+    <!-- Header Navigation (Permanently Visible Rows) -->
     <header>
         <div class="logo">NEWMAN</div>
         <nav id="navMenu">
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <!-- 1. Expanded Height Side-by-Side Flex Hero Layout -->
+    <!-- 1. Side-by-Side Flex Hero Layout -->
     <section id="home" class="hero-split-section">
         <!-- Left Side: Custom Campaign Photo Panel -->
         <div class="hero-left-panel">
@@ -56,6 +56,7 @@
             </div>
         </div>
     </section>
+
     <!-- 2. The Scent Profile Section -->
     <section id="scent" class="scent-profile">
         <div class="section-title">
@@ -67,7 +68,7 @@
             <div class="note-card">
                 <div class="note-layer">TOP NOTES</div>
                 <h3>Smoked Bergamot</h3>
-                <p>Crisp citrus combined with a flash of black pepper and crushed mint for an instantly sharp introduction.</p>
+                <p>Crisp citrus combined with a flash of black pepper and crushed mint for an instantly sharp, commanding introduction.</p>
             </div>
             <div class="note-card">
                 <div class="note-layer">HEART NOTES</div>
@@ -150,7 +151,7 @@
             let totalPrice = 0;
             
             if(cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="empty-msg">Your bag is empty.</p>';
+                cartItemsContainer.innerHTML = '<p class="empty-msg">Your ritual bag is empty.</p>';
             } else {
                 cartItemsContainer.innerHTML = '';
                 cart.forEach((item, index) => {

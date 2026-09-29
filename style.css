@@ -178,7 +178,7 @@ header nav a:hover {
     background-color: #bfa37a;
 }
 
-/* --- 1. Expanded Height Side-by-Side Flex Section --- */
+/* --- 1. Desktop Side-by-Side Flex Section --- */
 .hero-split-section {
     width: 100%;
     height: 90vh;
@@ -258,6 +258,7 @@ header nav a:hover {
     color: #000000;
     letter-spacing: 6px;
 }
+
 /* --- Reusable Section Headers --- */
 .section-title {
     text-align: center;
@@ -409,25 +410,6 @@ header nav a:hover {
     font-weight: 200;
 }
 
-.buy-btn {
-    width: 100%;
-    padding: 15px;
-    background: transparent;
-    border: 1px solid #bfa37a;
-    color: #bfa37a;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: auto; 
-    font-weight: 500;
-}
-
-.buy-btn:hover {
-    background-color: #bfa37a;
-    color: #000000;
-}
-
 /* --- 4. Luxury Footer Layout --- */
 footer {
     padding: 70px 10%;
@@ -450,57 +432,74 @@ footer {
     color: #555555;
 }
 
-/* --- 📱 AUTOMATIC RESPONSIVE MOBILE SCALING (No Button) --- */
+/* ==========================================================================
+   📱 DYNAMIC AUTOMATIC PHONE ADJUSTMENTS (Forces Unsquished Proportions)
+   ========================================================================== */
 @media(max-width: 968px) {
+    /* Responsive Navigation Row */
     header {
-        padding: 15px 4%;
-        flex-direction: column; /* Stacks logo above links cleanly on narrow mobile views */
-        gap: 10px;
+        padding: 20px 4%;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        background: rgba(5, 5, 5, 0.98);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     
     header .logo {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         letter-spacing: 6px;
+        text-align: center;
+    }
+
+    /* Flattens links row seamlessly underneath the logo */
+    header nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 
     header nav a {
-        margin: 0 12px; /* Pulls links closer together so they fit across mobile screens */
-        font-size: 0.65rem;
-        letter-spacing: 1px;
+        margin: 0 10px;
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
     }
 
-    /* Hero Layout Mobile stacking */
+    /* Converts split banner into stack, giving the photo major height */
     .hero-split-section {
         flex-direction: column;
         height: auto;
-    }
-    
-    .hero-left-panel, .hero-right-panel {
-        width: 100%;
+        padding-top: 110px; /* Moves baseline text down past fixed row header */
     }
     
     .hero-left-panel {
-        height: 55vh;
+        width: 100%;
+        height: 62vh; /* Expands photo vertical clearance scale */
     }
-    
+
     .hero-right-panel {
-        padding: 60px 25px;
+        width: 100%;
+        padding: 60px 20px;
+        background-color: #060606;
     }
 
     .hero-content h1 {
-        font-size: 2.1rem;
+        font-size: 2.3rem !important;
+        letter-spacing: 2px;
+        line-height: 1.2;
     }
 
-    /* Content components grid vertical wrapping */
+    /* Section components stack vertically */
     .pyramid-container, .product-grid {
         flex-direction: column;
         align-items: center;
-        gap: 25px;
+        gap: 30px;
     }
     
     .product-card {
         width: 100%;
         max-width: 100%;
+        padding: 35px 20px;
     }
     
     .cart-drawer {
