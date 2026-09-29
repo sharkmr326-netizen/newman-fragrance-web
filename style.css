@@ -58,15 +58,6 @@ header nav a:hover {
     transform: translateY(-1px);
 }
 
-.mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 1.8rem;
-    cursor: pointer;
-}
-
 /* --- Interactive Drawer Shopping Cart Sidebar --- */
 .cart-drawer {
     position: fixed;
@@ -459,39 +450,61 @@ footer {
     color: #555555;
 }
 
-/* --- 📱 ULTRA MOBILE RESPONSIVE MEDIA QUERIES --- */
+/* --- 📱 AUTOMATIC RESPONSIVE MOBILE SCALING (No Button) --- */
 @media(max-width: 968px) {
-    header { padding: 20px 6%; }
-    .mobile-menu-toggle { display: block; }
-
-    header nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 75%;
-        height: 100vh;
-        background-color: rgba(10, 10, 10, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.4s ease;
-        border-left: 1px solid rgba(255,255,255,0.05);
+    header {
+        padding: 15px 4%;
+        flex-direction: column; /* Stacks logo above links cleanly on narrow mobile views */
+        gap: 10px;
+    }
+    
+    header .logo {
+        font-size: 1.5rem;
+        letter-spacing: 6px;
     }
 
-    header nav.mobile-active { right: 0; }
-    header nav a { margin: 25px 0; font-size: 1.1rem; letter-spacing: 4px; }
+    header nav a {
+        margin: 0 12px; /* Pulls links closer together so they fit across mobile screens */
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+    }
 
-    .hero-split-section { flex-direction: column; height: auto; }
-    .hero-left-panel, .hero-right-panel { width: 100%; }
-    .hero-left-panel { height: 55vh; }
-    .hero-right-panel { padding: 60px 25px; }
-    .hero-content h1 { font-size: 2.1rem; }
+    /* Hero Layout Mobile stacking */
+    .hero-split-section {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .hero-left-panel, .hero-right-panel {
+        width: 100%;
+    }
+    
+    .hero-left-panel {
+        height: 55vh;
+    }
+    
+    .hero-right-panel {
+        padding: 60px 25px;
+    }
 
-    .pyramid-container { flex-direction: column; gap: 25px; }
-    .note-card { padding: 40px 25px; }
+    .hero-content h1 {
+        font-size: 2.1rem;
+    }
 
-    .product-grid { flex-direction: column; align-items: center; gap: 35px; }
-    .product-card { width: 100%; max-width: 100%; padding: 35px 25px; }
-    .cart-drawer { width: 100%; right: -100%; padding: 30px 20px; }
+    /* Content components grid vertical wrapping */
+    .pyramid-container, .product-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+    
+    .product-card {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .cart-drawer {
+        width: 100%;
+        right: -100%;
+    }
 }

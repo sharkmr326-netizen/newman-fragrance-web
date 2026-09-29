@@ -10,17 +10,15 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Header Navigation (Permanently Visible) -->
     <header>
         <div class="logo">NEWMAN</div>
         <nav id="navMenu">
-            <a href="#home" onclick="closeMobileMenu()">Home</a>
-            <a href="#scent" onclick="closeMobileMenu()">The Scent</a>
-            <a href="#shop" onclick="closeMobileMenu()">Shop</a>
+            <a href="#home">Home</a>
+            <a href="#scent">The Scent</a>
+            <a href="#shop">Shop</a>
             <a href="#" class="cart-trigger" onclick="toggleCart(event)">Cart (<span id="cart-count">0</span>)</a>
         </nav>
-        <!-- Mobile Menu Toggle Button -->
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">&#9776;</button>
     </header>
 
     <!-- Interactive Sidebar Drawer Cart -->
@@ -123,21 +121,13 @@
         <p class="footer-credit">&copy; 2026 NEWMAN FRAGRANCES. UNCOMPROMISING ELEGANCE.</p>
     </footer>
 
-    <!-- Interactive Cart & Navigation JavaScript Logic -->
+    <!-- Interactive Cart JavaScript Logic -->
     <script>
         let cart = [];
         
         function toggleCart(e) {
             if(e) e.preventDefault();
             document.getElementById('cartDrawer').classList.toggle('active');
-        }
-
-        function toggleMobileMenu() {
-            document.getElementById('navMenu').classList.toggle('mobile-active');
-        }
-
-        function closeMobileMenu() {
-            document.getElementById('navMenu').classList.remove('mobile-active');
         }
 
         function addToCart(name, price) {
